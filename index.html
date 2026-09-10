@@ -18,6 +18,10 @@
 <meta name="twitter:description" content="Satu pintu untuk angka dan layanan statistik Kutai Kartanegara.">
 <meta name="twitter:image" content="https://bpskukar.github.io/assets/og-pintar.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23F0932B'/><stop offset='1' stop-color='%232E7BD6'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><path d='M22 82V46a28 28 0 0 1 56 0v36M40 82V60a10 10 0 0 1 20 0v22M14 82h72' fill='none' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/assets/ikon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="PINTAR Kukar">
+<meta name="mobile-web-app-capable" content="yes">
 
 <!-- PINTAR Kukar: bilah bersama + tema (identik dengan dua situs lainnya) -->
 <script src="assets/pintar.js" data-situs="pintu"></script>
@@ -58,9 +62,8 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
              linear-gradient(120deg,#0B2A50 0%, var(--navy) 55%, #163F78 100%); }
 .hero__in { padding:64px 22px 70px; max-width:1140px; margin-inline:auto; position:relative; }
 .merek { display:flex; align-items:center; gap:14px; margin-bottom:22px; }
-.merek__tanda { width:54px; height:54px; border-radius:16px; display:grid; place-items:center; color:#fff; flex-shrink:0;
-  background:linear-gradient(135deg,#F0932B 0%,#2E7BD6 100%); box-shadow:0 10px 30px rgba(0,0,0,.35); }
-.merek__tanda svg { width:30px; height:30px; }
+.merek__tanda { width:54px; height:54px; border-radius:24%; display:block; flex-shrink:0; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+.merek__tanda svg { display:block; width:100%; height:100%; }
 .merek b { font-family:var(--f-disp); font-size:1.55rem; font-weight:800; letter-spacing:.06em; display:block; line-height:1.05; }
 .merek span { font-size:13px; color:rgba(255,255,255,.72); display:block; }
 .hero h1 { font-size:clamp(1.9rem,4.6vw,3rem); font-weight:800; line-height:1.12; max-width:18ch; text-wrap:balance; }
@@ -81,6 +84,9 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 .hasil__kotak h3 { font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; margin-bottom:8px; }
 .hasil__kotak h3.angka { color:var(--oranye); } .hasil__kotak h3.data { color:var(--biru); }
 .hasil__kaki { grid-column:1/-1; border-top:1px solid var(--line); padding-top:10px; font-size:13px; color:var(--ink-2); display:flex; gap:14px; flex-wrap:wrap; }
+.hasil__istilah { grid-column:1/-1; border-top:1px solid var(--line); padding-top:10px; font-size:13px; color:var(--ink-2); line-height:1.55; }
+.hasil__istilah .istilah__t { font-family:var(--f-disp); font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--biru); margin-right:4px; }
+.hasil__istilah a { color:var(--biru); font-weight:600; white-space:nowrap; }
 .angka-i { display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line); text-decoration:none; color:var(--ink); }
 .angka-i:last-child { border-bottom:0; }
 .angka-i b { font-size:13.5px; font-weight:600; }
@@ -100,10 +106,50 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 /* ---------- dua gerbang ---------- */
 .blok { padding:56px 0 0; }
 .blok--akhir { padding-bottom:64px; }
+.pasang { margin-top:56px; background:linear-gradient(120deg,#0B2A50,#0F3B6E 60%,#163F78); color:#fff; border-radius:22px; padding:28px 30px; display:grid; grid-template-columns:auto 1fr auto; gap:22px; align-items:center; }
+.pasang__tanda { width:64px; height:64px; border-radius:24%; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+.pasang__tanda svg { display:block; width:100%; height:100%; }
+.pasang h3 { margin:0 0 4px; font-size:1.2rem; font-weight:800; }
+.pasang p { margin:0; color:rgba(255,255,255,.78); font-size:14px; line-height:1.55; max-width:62ch; }
+.pasang__aksi { display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+.pasang__btn { border:0; background:#fff; color:#0F3B6E; font-weight:800; font-family:var(--f-disp); font-size:14px; padding:11px 18px; border-radius:999px; cursor:pointer; white-space:nowrap; box-shadow:0 8px 20px rgba(0,0,0,.25); }
+.pasang__btn:hover { background:#EAF2FC; }
+.pasang__btn:disabled { opacity:.6; cursor:default; }
+.pasang__cara { font-size:12.5px; color:rgba(255,255,255,.7); text-align:right; max-width:280px; }
+@media (max-width:760px) { .pasang { grid-template-columns:1fr; text-align:left; } .pasang__aksi { align-items:flex-start; } .pasang__cara { text-align:left; } }
 .kicker { font-family:var(--f-disp); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--biru); margin-bottom:8px; }
 .blok h2 { font-size:clamp(1.4rem,3vw,1.9rem); font-weight:800; margin-bottom:8px; }
 .blok > .wrap > p { color:var(--ink-2); max-width:70ch; margin:0 0 22px; }
 .gerbang { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+/* ---------- hari ini: angka hari ini + terbit baru ---------- */
+.hariini { display:grid; grid-template-columns:1.05fr 1fr; gap:18px; }
+.fakta { background:var(--panel); border:1px solid var(--line); border-left:5px solid var(--oranye); border-radius:var(--r); padding:20px 22px 18px; display:flex; flex-direction:column; }
+.fakta__k { font-family:var(--f-disp); font-size:clamp(1.15rem,2.2vw,1.45rem); font-weight:800; line-height:1.3; margin:6px 0 10px; letter-spacing:-.01em; }
+.fakta__n { color:var(--ink-2); font-size:14px; line-height:1.6; margin:0 0 14px; }
+.fakta__m { font-size:12px; color:var(--ink-3); margin-bottom:12px; }
+.fakta__aksi { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; align-items:center; }
+.fakta__aksi a, .fakta__aksi button { font-family:var(--f-disp); font-size:12.5px; font-weight:700; padding:8px 13px; border-radius:999px; border:1px solid var(--line-2); background:var(--panel); color:var(--ink-2); cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:5px; }
+.fakta__aksi a:hover, .fakta__aksi button:hover { border-color:var(--biru); color:var(--biru); }
+.fakta__aksi .utama { background:var(--biru); border-color:var(--biru); color:#fff; }
+.fakta__aksi .utama:hover { background:var(--biru-tua); color:#fff; }
+.fakta__aksi .lain { margin-left:auto; border:0; color:var(--ink-3); padding-inline:4px; }
+.terbit { background:var(--panel); border:1px solid var(--line); border-left:5px solid var(--biru); border-radius:var(--r); padding:20px 22px 16px; display:flex; flex-direction:column; }
+.terbit__d { list-style:none; margin:8px 0 0; padding:0; }
+.terbit__d li { display:grid; grid-template-columns:52px 1fr; gap:10px; padding:9px 0; border-top:1px solid var(--line); align-items:start; }
+.terbit__d li:first-child { border-top:0; padding-top:4px; }
+.terbit__t { font-family:var(--f-mono); font-size:11px; color:var(--ink-3); line-height:1.4; padding-top:2px; }
+.terbit__t b { display:block; font-size:16px; color:var(--ink); font-family:var(--f-disp); line-height:1.1; }
+.terbit__j { font-size:13.5px; line-height:1.45; }
+.terbit__j a { color:var(--ink); text-decoration:none; font-weight:600; }
+.terbit__j a:hover { color:var(--biru); text-decoration:underline; }
+.terbit__j small { display:block; color:var(--ink-3); font-size:12px; margin-top:2px; }
+.terbit__jenis { display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:1px 7px; border-radius:999px; margin-right:6px; vertical-align:1px; background:var(--biru-wash); color:var(--biru-tua); }
+.terbit__jenis.brs { background:var(--oranye-wash); color:var(--oranye); }
+.terbit__jenis.agenda { background:#E3F5EA; color:var(--hijau); }
+.terbit__kaki { margin-top:auto; padding-top:10px; font-size:13px; display:flex; gap:14px; flex-wrap:wrap; }
+.terbit__kaki a { color:var(--biru); font-weight:600; text-decoration:none; }
+.terbit__kosong { color:var(--ink-3); font-size:13.5px; padding:10px 0; }
+@media (max-width:900px) { .hariini { grid-template-columns:1fr; } }
 .gerbang a { display:block; text-decoration:none; color:inherit; border-radius:var(--r-l); padding:28px 28px 26px; position:relative; overflow:hidden;
   border:1px solid var(--line); background:var(--panel); box-shadow:var(--bayang); transition:transform .2s, box-shadow .2s; }
 .gerbang a:hover { transform:translateY(-4px); box-shadow:var(--bayang-2); }
@@ -140,6 +186,9 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 .layanan__ikon.oranye { background:var(--oranye-wash); color:var(--oranye); }
 .layanan__ikon.hijau { background:#E3F5EA; color:var(--hijau); } .layanan__ikon.teal { background:#E0F4F6; color:var(--teal); }
 :root[data-theme="dark"] .layanan__ikon.hijau { background:#173626; } :root[data-theme="dark"] .layanan__ikon.teal { background:#12363B; }
+.layanan__ikon.ungu { background:#EFE9FA; color:#6B4FBB; } .layanan__ikon.merah { background:#FBE7E7; color:#C0392B; }
+:root[data-theme="dark"] .layanan__ikon.ungu { background:#2C2350; } :root[data-theme="dark"] .layanan__ikon.merah { background:#3F1F1F; }
+.layanan { grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); }
 .layanan__ikon svg { width:22px; height:22px; }
 .layanan b { font-family:var(--f-disp); font-weight:700; font-size:15px; display:block; margin-bottom:4px; }
 .layanan span { font-size:13px; color:var(--ink-2); line-height:1.5; display:block; }
@@ -185,7 +234,7 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 <section class="hero">
   <div class="hero__in">
     <div class="merek">
-      <span class="merek__tanda" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V10a8 8 0 0 1 16 0v11"/><path d="M9 21v-6a3 3 0 0 1 6 0v6"/><path d="M2 21h20"/></svg></span>
+      <span class="merek__tanda" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="pintarG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0932B"/><stop offset="1" stop-color="#2E7BD6"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#pintarG)"/><path d="M22 82V46a28 28 0 0 1 56 0v36M40 82V60a10 10 0 0 1 20 0v22M14 82h72" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <div><b>PINTAR Kukar</b><span>Pusat Informasi &amp; Layanan Statistik Terpadu · BPS Kabupaten Kutai Kartanegara</span></div>
     </div>
     <h1>Satu pintu untuk <em>angka</em> dan <em>layanan</em> statistik Kutai Kartanegara</h1>
@@ -208,9 +257,22 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
   <div class="hasil__kotak">
     <div><h3 class="angka">Angka</h3><div id="hasilAngka"></div></div>
     <div><h3 class="data">Ragam data</h3><div id="hasilData"></div></div>
+    <div class="hasil__istilah" id="hasilIstilah" hidden></div>
     <div class="hasil__kaki" id="hasilKaki"></div>
   </div>
 </div>
+
+<section class="blok" id="hariini">
+  <div class="wrap">
+    <div class="kicker">Hari ini</div>
+    <h2>Yang baru dari BPS Kukar</h2>
+    <p>Satu angka yang berganti tiap hari, dan terbitan terbaru — supaya ada alasan mampir walau tidak sedang mencari data.</p>
+    <div class="hariini">
+      <div class="fakta" id="fakta"><div class="fakta__m">Memuat angka…</div></div>
+      <div class="terbit" id="terbit"><div class="kicker" style="color:var(--biru)">Terbit baru</div><div class="terbit__kosong">Memuat…</div></div>
+    </div>
+  </div>
+</section>
 
 <section class="blok" id="gerbang">
   <div class="wrap">
@@ -266,6 +328,14 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
         <div class="layanan__ikon hijau"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.2A8 8 0 1 1 21 12z"/></svg></div>
         <b>Tanya asisten PST</b><span>Jawaban cepat dari katalog, jawaban baku, dan angka indikator — apakah data ada, cara memintanya, jam layanan.</span>
       </a>
+      <a href="/katalog-data-bpskukar/glosarium.html">
+        <div class="layanan__ikon ungu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h5"/></svg></div>
+        <b>Glosarium &amp; cara membaca angka</b><span>Arti IPM, TPT, PDRB, garis kemiskinan — cara menghitung, cara membaca, dan salah kaprah yang sering terjadi.</span>
+      </a>
+      <a href="/indikator-strategis-bpskukar/#bandingkan">
+        <div class="layanan__ikon merah"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><rect x="5" y="10" width="3" height="10"/><rect x="10.5" y="4" width="3" height="16"/><rect x="16" y="13" width="3" height="7"/></svg></div>
+        <b>Bandingkan kab/kota se-Kaltim</b><span>Peringkat Kukar di antara 10 kabupaten/kota: IPM, kemiskinan, pengangguran, pertumbuhan ekonomi, penduduk.</span>
+      </a>
       <a href="/katalog-data-bpskukar/admin.html" data-pintar="pegawai">
         <div class="layanan__ikon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <b>Ruang pegawai</b><span>Untuk petugas PST: buku tamu, tiket, papan tanya, konsultasi, dan penyuntingan isi indikator.</span>
@@ -283,6 +353,20 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
       <div><div class="no">1</div><b>Lihat</b><p>Temukan angka kuncinya di Indikator Strategis — misalnya persentase penduduk miskin 2025.</p></div>
       <div><div class="no">2</div><b>Minta</b><p>Tekan “Minta data lengkap” — Katalog Data terbuka dengan pencarian terisi: tersedia sampai level mana, unduh atau ajukan.</p></div>
       <div><div class="no">3</div><b>Konsultasi</b><p>Masih perlu penjelasan? Ajukan konsultasi daring; petugas menyiapkan narasumber sesuai topik dan Anda dapat tautan Zoom.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="aplikasi">
+  <div class="pasang">
+    <div class="pasang__tanda" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="pintarG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F0932B"/><stop offset="1" stop-color="#2E7BD6"/></linearGradient></defs><rect width="100" height="100" rx="24" fill="url(#pintarG2)"/><path d="M22 82V46a28 28 0 0 1 56 0v36M40 82V60a10 10 0 0 1 20 0v22M14 82h72" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div>
+      <h3>Pasang PINTAR Kukar di layar utama HP</h3>
+      <p>Terbuka seperti aplikasi, tanpa toko aplikasi dan tanpa memakan ruang. Angka indikator terakhir tetap bisa dibaca saat sinyal buruk; pintasan langsung ke indikator, katalog, konsultasi, dan cek tiket.</p>
+    </div>
+    <div class="pasang__aksi">
+      <button type="button" class="pasang__btn" id="btnPasang">Pasang sekarang</button>
+      <div class="pasang__cara" id="caraPasang"></div>
     </div>
   </div>
 </section>
@@ -345,8 +429,11 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 <script src="/katalog-data-bpskukar/assets/config.js"></script>
 <script src="/katalog-data-bpskukar/assets/katalog.js"></script>
 <script src="/katalog-data-bpskukar/assets/cari.js"></script>
+<script src="/katalog-data-bpskukar/assets/glosarium.js"></script>
+<script src="/katalog-data-bpskukar/assets/terbitan-awal.js"></script>
 <script src="/indikator-strategis-bpskukar/assets/data.js"></script>
 <script src="/indikator-strategis-bpskukar/assets/muat.js"></script>
+<script src="/indikator-strategis-bpskukar/assets/kartu.js"></script>
 <script>
 (function () {
   "use strict";
@@ -382,6 +469,117 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
                                  : Promise.resolve(null);
   if (!window.INDIKATOR) gambarSorot({});
 
+  /* ---- angka hari ini: satu fakta berganti tiap hari, dari isi indikator terbit ---- */
+  var ANCHOR_ID = { p0: "#kemiskinan", rentan: "#kemiskinan" };
+  function faktaDari(D) {
+    var f = [], by = {}; (D.indikator || []).forEach(function (it) { by[it.id] = it; });
+    var v = function (id) { return by[id] ? Number(by[id].value) : NaN; };
+    var th = function (it) { var m = String(it.abbr || "").match(/20\d\d/); return m ? " (" + m[0] + ")" : ""; };
+    var tambah = function (id, kalimat, glos) { if (by[id] && !isNaN(v(id))) f.push({ it: by[id], kalimat: kalimat, glos: glos || id }); };
+    if (by.p0 && v("p0") > 0) tambah("p0", fmt(v("p0"), 2) + "% penduduk Kukar tergolong miskin" + th(by.p0) + " — kira-kira 1 dari " + Math.round(100 / v("p0")) + " orang.");
+    tambah("penduduk", "Penduduk Kutai Kartanegara " + fmt(v("penduduk"), 0) + " jiwa" + (by.penduduk && by.penduduk.tag ? " — " + by.penduduk.tag : "") + ".");
+    tambah("tpt", "Dari 100 orang angkatan kerja di Kukar, sekitar " + Math.round(v("tpt")) + " orang menganggur (TPT " + fmt(v("tpt"), 2) + "%)" + th(by.tpt) + ".");
+    if (by.ipm) tambah("ipm", "IPM Kukar " + fmt(v("ipm"), 2) + th(by.ipm) + " — kategori " + (v("ipm") >= 80 ? "sangat tinggi" : v("ipm") >= 70 ? "tinggi" : v("ipm") >= 60 ? "sedang" : "rendah") + ".");
+    tambah("lpe", "Ekonomi Kukar tumbuh " + fmt(v("lpe"), 2) + "%" + th(by.lpe) + " — dihitung atas dasar harga konstan.");
+    tambah("uhh", "Bayi yang lahir di Kukar diperkirakan hidup " + fmt(v("uhh"), 2) + " tahun.");
+    if (by.rls) tambah("rls", "Orang dewasa Kukar rata-rata bersekolah " + fmt(v("rls"), 2) + " tahun — " + (v("rls") >= 12 ? "setara tamat SMA" : v("rls") >= 9 ? "setara tamat SMP" : "belum tamat SMP") + ".");
+    tambah("hls", "Anak Kukar yang masuk SD sekarang diharapkan bersekolah " + fmt(v("hls"), 2) + " tahun.");
+    if (by.gini) tambah("gini", "Rasio Gini Kukar " + fmt(v("gini"), 3) + " — ketimpangan pengeluaran " + (v("gini") < 0.3 ? "rendah" : v("gini") <= 0.5 ? "sedang" : "tinggi") + ".");
+    tambah("tpak", fmt(v("tpak"), 2) + "% penduduk usia kerja Kukar bekerja atau sedang mencari kerja (TPAK).");
+    tambah("pdrb-kapita", "PDRB per kapita Kukar Rp" + fmt(v("pdrb-kapita"), 1) + " juta per tahun — bukan pendapatan per orang.", "pdrb-kapita");
+    tambah("rentan", fmt(v("rentan"), 2) + "% penduduk Kukar rentan miskin: tidak miskin, tetapi mudah jatuh miskin bila ada guncangan.");
+    tambah("lpp", "Penduduk Kukar bertambah " + fmt(v("lpp"), 2) + "% per tahun — sekitar " + Math.round(v("lpp") * 10) + " orang tiap 1.000 penduduk.");
+    tambah("ppp", "Pengeluaran per kapita Kukar (disesuaikan daya beli) sekitar Rp" + fmt(v("ppp") / 1000, 1) + " juta per orang per tahun.");
+    return f;
+  }
+  function seriFakta(D, id) {
+    var km = D.kemiskinan || {}, pt = D.pdrbTahun || {}, ipm = D.ipm || {};
+    var m = { p0: [km.label, km.p0], ipm: [ipm.label, ipm.nilai], lpe: [pt.label, pt.lpe] }[id];
+    return m && m[0] && m[1] ? { label: m[0], nilai: m[1] } : null;
+  }
+  var FAKTA = [], faktaIdx = 0;
+  function gambarFakta() {
+    var w = document.getElementById("fakta");
+    if (!FAKTA.length) { w.innerHTML = '<div class="fakta__m">Angka belum tersedia — situs indikator belum terpasang.</div>'; return; }
+    var f = FAKTA[faktaIdx % FAKTA.length], it = f.it;
+    var anchor = ANCHOR_ID[it.id] || ANCHOR[it.kat] || "#ringkasan";
+    var tgl = new Date().toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    w.innerHTML =
+      '<div class="kicker" style="color:var(--oranye)">Angka hari ini · ' + esc(tgl) + "</div>" +
+      '<p class="fakta__k">' + esc(f.kalimat) + "</p>" +
+      '<p class="fakta__n">' + esc(String(it.note || "").replace(/\*\*/g, "")) + "</p>" +
+      '<div class="fakta__m">' + esc(it.label) + (it.abbr ? " · " + esc(it.abbr) : "") + " · Sumber: Booklet Indikator Strategis BPS Kabupaten Kutai Kartanegara</div>" +
+      '<div class="fakta__aksi">' +
+        '<a class="utama" href="' + T.indikator + anchor + '">Lihat grafiknya</a>' +
+        '<a href="' + T.katalog + "glosarium.html#" + esc(f.glos) + '">Apa artinya?</a>' +
+        '<a href="https://wa.me/?text=' + encodeURIComponent(f.kalimat + "\n— PINTAR Kukar, BPS Kabupaten Kutai Kartanegara\n" + location.origin + T.indikator + anchor) + '" target="_blank" rel="noopener">Kirim ke WhatsApp</a>' +
+        (window.KARTU ? '<button type="button" id="faktaKartu">Unduh kartu gambar</button>' : "") +
+        (FAKTA.length > 1 ? '<button type="button" class="lain" id="faktaLain" title="Angka lain">Angka lain ↻</button>' : "") +
+      "</div>";
+    var bk = document.getElementById("faktaKartu");
+    if (bk) bk.onclick = function () {
+      bk.disabled = true; bk.textContent = "Menyiapkan…";
+      window.KARTU.bagikan({ label: it.label, value: it.value, dec: it.dec, unit: it.unit, abbr: it.abbr, note: String(it.note || "").replace(/\*\*/g, ""), accent: it.accent, tag: it.tag,
+        seri: seriFakta(IND, it.id), kalimat: f.kalimat, tautanPenuh: location.origin + T.indikator + anchor })
+        .then(function (r) { bk.textContent = r === "diunduh" ? "Kartu diunduh ✓" : r === "dibagikan" ? "Dibagikan ✓" : "Unduh kartu gambar"; })
+        .catch(function () { bk.textContent = "Gagal membuat kartu"; })
+        .then(function () { bk.disabled = false; setTimeout(function () { bk.textContent = "Unduh kartu gambar"; }, 2500); });
+    };
+    var bl = document.getElementById("faktaLain");
+    if (bl) bl.onclick = function () { faktaIdx = (faktaIdx + 1) % FAKTA.length; gambarFakta(); };
+  }
+  siapInd.then(function () {
+    FAKTA = IND ? faktaDari(IND) : [];
+    var awalTahun = new Date(new Date().getFullYear(), 0, 0), hari = Math.floor((Date.now() - awalTahun) / 864e5);
+    faktaIdx = FAKTA.length ? (hari + new Date().getFullYear()) % FAKTA.length : 0;
+    gambarFakta();
+  });
+
+  /* ---- terbit baru & agenda rilis ---- */
+  var JENIS_T = { brs: "BRS", publikasi: "Publikasi", infografis: "Infografis", tabel: "Tabel", berita: "Berita", agenda: "Agenda" };
+  var BULAN_P = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+  function hariIniWita() { var d = new Date(Date.now() + 8 * 3600e3); return d.toISOString().slice(0, 10); }
+  function muatTerbitan() {
+    var KUNCI = "pintar.terbitan.cache", awal = (window.TERBITAN_AWAL || []).map(function (t) { return Object.assign({ aktif: true }, t); });
+    var baca = function (k) { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } };
+    if (!K.SUPABASE_URL || !K.SUPABASE_ANON_KEY) {
+      var demo = baca("pstkukar.terbitan");
+      return Promise.resolve({ data: demo ? demo.filter(function (t) { return t.aktif !== false; }) : awal, sumber: demo ? "demo" : "awal" });
+    }
+    var ac = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ac) ac.abort(); }, 4500);
+    return fetch(K.SUPABASE_URL + "/rest/v1/v_terbitan?select=id,jenis,judul,ringkas,tanggal,tautan,berkas,gambar,sumber&limit=60",
+      { headers: { apikey: K.SUPABASE_ANON_KEY, Authorization: "Bearer " + K.SUPABASE_ANON_KEY }, signal: ac ? ac.signal : undefined })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) { clearTimeout(timer); try { localStorage.setItem(KUNCI, JSON.stringify({ t: Date.now(), d: d })); } catch (e) { /* penuh */ } return { data: d, sumber: "server" }; })
+      .catch(function () { clearTimeout(timer); var c = baca(KUNCI); return c && c.d ? { data: c.d, sumber: "cache" } : { data: awal, sumber: "awal" }; });
+  }
+  function kotakTgl(t) {
+    var d = new Date(String(t) + "T00:00:00"); if (isNaN(d)) return "<b>?</b>";
+    return "<b>" + d.getDate() + "</b>" + BULAN_P[d.getMonth()] + (d.getFullYear() !== new Date().getFullYear() ? " " + d.getFullYear() : "");
+  }
+  function butirTerbit(t) {
+    var judul = esc(t.judul), tautan = t.tautan || t.berkas;
+    return "<li>" + '<div class="terbit__t">' + kotakTgl(t.tanggal) + "</div>" +
+      '<div class="terbit__j"><span class="terbit__jenis ' + esc(t.jenis) + '">' + esc(JENIS_T[t.jenis] || t.jenis) + "</span>" +
+      (tautan ? '<a href="' + esc(tautan) + '" target="_blank" rel="noopener">' + judul + "</a>" : judul) +
+      (t.ringkas ? "<small>" + esc(t.ringkas) + "</small>" : "") + "</div></li>";
+  }
+  function gambarTerbit(r) {
+    var w = document.getElementById("terbit"), hari = hariIniWita(), d = r.data || [];
+    var baru = d.filter(function (t) { return t.jenis !== "agenda" && String(t.tanggal) <= hari; }).sort(function (a, b) { return String(b.tanggal).localeCompare(String(a.tanggal)); }).slice(0, 5);
+    var agenda = d.filter(function (t) { return t.jenis === "agenda" && String(t.tanggal) >= hari; }).sort(function (a, b) { return String(a.tanggal).localeCompare(String(b.tanggal)); }).slice(0, 4);
+    var adaApi = d.some(function (t) { return t.sumber === "api"; });
+    w.innerHTML =
+      '<div class="kicker" style="color:var(--biru)">Terbit baru dari BPS Kukar</div>' +
+      (baru.length ? '<ul class="terbit__d">' + baru.map(butirTerbit).join("") + "</ul>" : '<div class="terbit__kosong">Belum ada terbitan yang tercatat. Lihat langsung di situs BPS Kukar.</div>') +
+      (agenda.length ? '<div class="kicker" style="color:var(--hijau);margin-top:14px">Agenda rilis mendatang</div><ul class="terbit__d">' + agenda.map(butirTerbit).join("") + "</ul>" : "") +
+      '<div class="terbit__kaki"><a href="https://kukarkab.bps.go.id/id/publication" target="_blank" rel="noopener">Semua publikasi →</a>' +
+      '<a href="https://kukarkab.bps.go.id/id/pressrelease" target="_blank" rel="noopener">Berita resmi statistik →</a>' +
+      '<span style="color:var(--ink-3);margin-left:auto">' + (adaApi ? "Diperbarui otomatis tiap malam dari Web API BPS" : r.sumber === "server" ? "Dikelola pegawai PST" : r.sumber === "cache" ? "Salinan terakhir" : r.sumber === "demo" ? "Mode demo" : "Daftar awal") + "</span></div>";
+  }
+  muatTerbitan().then(gambarTerbit);
+
   /* ---- pencarian terpadu: angka + ragam data ---- */
   var SINONIM = { penduduk: ["jumlah penduduk", "populasi"], lpp: ["pertumbuhan penduduk"], tpak: ["angkatan kerja"], tpt: ["pengangguran"],
     "pdrb-adhb": ["pdrb", "harga berlaku"], "pdrb-adhk": ["harga konstan"], lpe: ["pertumbuhan ekonomi"], "pdrb-kapita": ["per kapita"],
@@ -390,16 +588,32 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
   var HENTI = CARI ? CARI.HENTI : [];
   function cariAngka(q) {
     if (!IND || !IND.indikator) return [];
-    var t = " " + q.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ") + " ";
-    var singkat = (q.match(/\b(?:[A-Z]{2,6}[0-9]?|[A-Z][0-9])\b/g) || []).map(function (w) { return w.toLowerCase(); });
+    /* singkatan dikenali huruf besar maupun kecil (ipm = IPM), kepanjangannya ikut dicari */
+    var luas = CARI && CARI.perluas ? CARI.perluas(q) : q;
+    var t = " " + luas.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ") + " ";
+    var tok = q.toLowerCase().replace(/[^a-z0-9\s-]/g, " ").split(/\s+/).filter(Boolean);
     return IND.indikator.map(function (it) {
       var skor = 0, kode = String(it.abbr || "").split(/[ ·]/)[0].toLowerCase();
-      if (singkat.indexOf(it.id) !== -1 || (kode && singkat.indexOf(kode) !== -1)) skor += 5;
+      if (tok.indexOf(it.id) !== -1 || (kode && kode.length <= 5 && HENTI.indexOf(kode) === -1 && tok.indexOf(kode) !== -1)) skor += 5;
       if (t.indexOf(" " + String(it.label).toLowerCase() + " ") !== -1) skor += 5;
       (SINONIM[it.id] || []).forEach(function (sn) { if (t.indexOf(sn) !== -1) skor += 3; });
       String(it.label).toLowerCase().split(/\s+/).forEach(function (w) { if (w.length >= 5 && HENTI.indexOf(w) === -1 && t.indexOf(w) !== -1) skor += 1; });
       return { it: it, skor: skor };
     }).filter(function (x) { return x.skor >= 3; }).sort(function (a, b) { return b.skor - a.skor; }).slice(0, 4).map(function (x) { return x.it; });
+  }
+  var GLOS = window.GLOSARIUM || [];
+  function cariIstilah(q) {
+    var tl = " " + q.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim() + " ", tok = tl.trim().split(" ");
+    var terbaik = null, maks = 0;
+    GLOS.forEach(function (g) {
+      var skor = 0;
+      if (tok.indexOf(g.id) !== -1) skor += 8;
+      (g.singkat || "").toLowerCase().split(/[ \/]+/).forEach(function (x) { if (x && tok.indexOf(x) !== -1) skor += 8; });
+      if (tl.indexOf(" " + g.istilah.toLowerCase() + " ") !== -1) skor += 8;
+      g.kunci.forEach(function (k) { if (k.length >= 3 && tl.indexOf(" " + k + " ") !== -1) skor += k.indexOf(" ") !== -1 ? 6 : 4; });
+      if (skor > maks) { maks = skor; terbaik = g; }
+    });
+    return maks >= 4 ? terbaik : null;
   }
   function cari(q) {
     var box = document.getElementById("hasil");
@@ -414,9 +628,14 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
       return '<a class="data-i" href="' + T.katalog + "?q=" + encodeURIComponent(d.n) + '"><span class="pill ' + esc(d.st) + '">' + esc(LABEL[d.st] || d.st) + "</span>" +
         "<span><b>" + esc(d.n) + "</b><small>" + (d.lv && d.lv !== "—" ? "level terendah " + esc(d.lv) + " · " : "") + esc(d.sm) + "</small></span></a>";
     }).join("") : '<div class="kosong">' + (CARI ? "Tidak ada ragam data yang cocok." : "Katalog belum tersedia.") + "</div>";
+    var istilah = cariIstilah(q);
+    document.getElementById("hasilIstilah").innerHTML = istilah ? '<span class="istilah__t">Istilah</span> <b>' + esc(istilah.istilah) + (istilah.singkat ? " (" + esc(istilah.singkat) + ")" : "") + "</b> — " + esc(istilah.definisi) +
+      ' <a href="' + T.katalog + "glosarium.html#" + esc(istilah.id) + '">Cara membacanya →</a>' : "";
+    document.getElementById("hasilIstilah").hidden = !istilah;
     document.getElementById("hasilKaki").innerHTML =
       '<a href="' + T.katalog + "?q=" + encodeURIComponent(q) + '">Semua hasil di Katalog Data →</a>' +
-      '<a href="' + T.katalog + "?tanya=" + encodeURIComponent(q) + '">Tanya asisten PST: “' + esc(q) + '” →</a>';
+      '<a href="' + T.katalog + "?tanya=" + encodeURIComponent(q) + '">Tanya asisten PST: “' + esc(q) + '” →</a>' +
+      '<a href="' + T.katalog + "glosarium.html?q=" + encodeURIComponent(q) + '">Glosarium →</a>';
     box.hidden = false;
   }
   var q = document.getElementById("q"), jeda;
@@ -425,6 +644,25 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
   Array.prototype.forEach.call(document.querySelectorAll(".contoh button"), function (b) {
     b.onclick = function () { q.value = b.dataset.q; siapInd.then(function () { cari(b.dataset.q); }); };
   });
+  /* ---- pasang sebagai aplikasi ---- */
+  function gambarPasang(d) {
+    var b = document.getElementById("btnPasang"), c = document.getElementById("caraPasang");
+    if (!b) return;
+    var P = window.PINTAR || {};
+    if (d.terpasang || (P.terpasang && P.terpasang())) { b.textContent = "Sudah terpasang"; b.disabled = true; c.textContent = "Buka dari ikon PINTAR Kukar di layar utama."; return; }
+    if (d.bisa && !d.ios) { b.textContent = "Pasang sekarang"; b.disabled = false; c.textContent = "Chrome / Edge / Samsung Internet: satu ketukan, ikon langsung muncul."; return; }
+    if (d.ios) { b.textContent = "Cara memasang"; b.disabled = false; c.textContent = "Safari iPhone/iPad: Bagikan → Tambahkan ke Layar Utama."; return; }
+    b.textContent = "Cara memasang"; b.disabled = false;
+    c.textContent = "Android: buka di Chrome → menu ⋮ → Tambahkan ke layar utama. iPhone: Safari → Bagikan → Tambahkan ke Layar Utama. Komputer: ikon pasang di bilah alamat Chrome/Edge.";
+  }
+  window.addEventListener("pintar:pasang", function (e) { gambarPasang(e.detail || {}); });
+  gambarPasang({ bisa: window.PINTAR && window.PINTAR.bisaPasang && window.PINTAR.bisaPasang(), ios: window.PINTAR && window.PINTAR.iOS });
+  var btnPasang = document.getElementById("btnPasang");
+  if (btnPasang) btnPasang.onclick = function () {
+    if (window.PINTAR && window.PINTAR.bisaPasang && window.PINTAR.bisaPasang()) window.PINTAR.pasang();
+    else document.getElementById("caraPasang").scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
   var awal = new URLSearchParams(location.search).get("q");
   if (awal) { q.value = awal; siapInd.then(function () { cari(awal); }); }
 })();
