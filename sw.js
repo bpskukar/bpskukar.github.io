@@ -9,7 +9,7 @@
    • Supabase / Web API: tidak pernah disimpan (data langsung, ada sesi).
    Nomor VERSI diubah tiap terbit agar salinan lama dibersihkan.
    ========================================================================== */
-var VERSI = "pintar-2026-09-10b";
+var VERSI = "pintar-2026-09-10c";
 var LURING = "/luring.html";
 var AWAL = [
   "/", "/index.html", LURING, "/manifest.webmanifest", "/assets/pintar.js",

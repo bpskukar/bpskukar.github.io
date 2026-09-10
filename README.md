@@ -16,7 +16,8 @@ akar domain, sehingga kedua situs itu secara alami "berada di bawahnya".
 
 - **Pencarian terpadu** — satu kotak untuk angka dan ragam data: hasil kiri dari indikator
   strategis (nilai + tautan ke grafiknya), hasil kanan dari katalog (status ketersediaan +
-  tautan ke katalog dengan pencarian terisi), plus tautan *Tanya asisten PST*.
+  tautan ke katalog dengan pencarian terisi), plus tautan *Tanya asisten PST* yang membuka
+  asisten di beranda ini juga (mesinnya dimuat dari repositori katalog lewat `assets/asisten.js`).
 - **Hari ini** — *Angka hari ini* (satu fakta berganti tiap hari dari isi indikator terbit; kirim ke
   WhatsApp, unduh kartu gambar) dan *Terbit baru dari BPS Kukar* + agenda rilis mendatang (dari
   tabel `terbitan` Supabase; cadangan `terbitan-awal.js` katalog).
