@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PINTAR Kukar — Pusat Informasi & Layanan Statistik Terpadu BPS Kutai Kartanegara</title>
+<meta name="description" content="PINTAR Kukar: satu pintu untuk angka dan layanan statistik Kabupaten Kutai Kartanegara — indikator strategis, katalog data, permintaan data, konsultasi daring, dan asisten PST.">
+<meta name="theme-color" content="#0F3B6E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PINTAR Kukar — BPS Kabupaten Kutai Kartanegara">
+<meta property="og:description" content="Satu pintu untuk angka dan layanan statistik Kutai Kartanegara.">
+<meta property="og:locale" content="id_ID">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23F0932B'/><stop offset='1' stop-color='%232E7BD6'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><path d='M22 82V46a28 28 0 0 1 56 0v36M40 82V60a10 10 0 0 1 20 0v22M14 82h72' fill='none' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+<!-- PINTAR Kukar: bilah bersama + tema (identik dengan dua situs lainnya) -->
+<script src="assets/pintar.js" data-situs="pintu"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:#0F3B6E; --biru:#1D5FAD; --biru-2:#2E7BD6; --biru-wash:#E9F1FB;
+  --oranye:#ED7014; --oranye-2:#F5B32B; --oranye-wash:#FFF1DF;
+  --hijau:#2E9E5B; --teal:#1897A6;
+  --bg:#F5F8FC; --panel:#FFFFFF; --sunk:#EEF3F9; --line:#E1E8F0; --line-2:#C9D5E3;
+  --ink:#1B2A3F; --ink-2:#4A5A70; --ink-3:#7A889B;
+  --bayang:0 2px 12px rgba(15,59,110,.08); --bayang-2:0 14px 40px rgba(15,59,110,.16);
+  --r:16px; --r-l:24px;
+  --f-disp:"Plus Jakarta Sans","Inter",system-ui,sans-serif; --f-ui:"Inter","Plus Jakarta Sans",system-ui,sans-serif;
+}
+:root[data-theme="dark"] {
+  --bg:#0E1726; --panel:#172436; --sunk:#1E2D42; --line:#2A3B52; --line-2:#3A4F6B;
+  --ink:#E8EEF6; --ink-2:#B3C0D1; --ink-3:#8494AA;
+  --biru:#5B9DE8; --biru-2:#7AB4F2; --biru-wash:#1B2E48; --oranye:#FF8C3B; --oranye-wash:#3A2415;
+  --bayang:0 2px 12px rgba(0,0,0,.35); --bayang-2:0 14px 40px rgba(0,0,0,.5);
+}
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+html { scroll-behavior:smooth; scroll-padding-top:calc(var(--pintar-h,0px) + 16px); }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--f-ui); font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:var(--biru); }
+.wrap { max-width:1140px; margin-inline:auto; padding-inline:22px; }
+h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
+
+/* ---------- hero ---------- */
+.hero { position:relative; overflow:hidden; color:#fff;
+  background:radial-gradient(900px 480px at 88% -10%, rgba(240,147,43,.35), transparent 60%),
+             radial-gradient(700px 420px at 4% 110%, rgba(46,123,214,.45), transparent 60%),
+             linear-gradient(120deg,#0B2A50 0%, var(--navy) 55%, #163F78 100%); }
+.hero__in { padding:64px 22px 70px; max-width:1140px; margin-inline:auto; position:relative; }
+.merek { display:flex; align-items:center; gap:14px; margin-bottom:22px; }
+.merek__tanda { width:54px; height:54px; border-radius:16px; display:grid; place-items:center; color:#fff; flex-shrink:0;
+  background:linear-gradient(135deg,#F0932B 0%,#2E7BD6 100%); box-shadow:0 10px 30px rgba(0,0,0,.35); }
+.merek__tanda svg { width:30px; height:30px; }
+.merek b { font-family:var(--f-disp); font-size:1.55rem; font-weight:800; letter-spacing:.06em; display:block; line-height:1.05; }
+.merek span { font-size:13px; color:rgba(255,255,255,.72); display:block; }
+.hero h1 { font-size:clamp(1.9rem,4.6vw,3rem); font-weight:800; line-height:1.12; max-width:18ch; text-wrap:balance; }
+.hero h1 em { font-style:normal; color:#FFC46B; }
+.hero p.lede { max-width:64ch; font-size:16px; color:rgba(255,255,255,.86); margin:16px 0 0; }
+.cari { position:relative; max-width:720px; margin-top:26px; }
+.cari input { width:100%; padding:16px 20px 16px 52px; border:0; border-radius:999px; font:500 15.5px var(--f-ui); color:#1B2A3F; background:#fff;
+  box-shadow:0 14px 40px rgba(0,0,0,.28); }
+.cari input:focus { outline:none; box-shadow:0 14px 40px rgba(0,0,0,.3), 0 0 0 4px rgba(255,255,255,.35); }
+.cari svg { position:absolute; left:20px; top:50%; transform:translateY(-50%); width:19px; height:19px; color:#7A889B; pointer-events:none; }
+.contoh { margin-top:12px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:12.5px; color:rgba(255,255,255,.7); }
+.contoh button { background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28); color:#fff; border-radius:999px; padding:4px 11px; font:500 12px var(--f-ui); cursor:pointer; }
+.contoh button:hover { background:rgba(255,255,255,.26); }
+
+/* hasil pencarian terpadu */
+.hasil { max-width:920px; margin:-34px auto 0; position:relative; z-index:3; padding-inline:22px; }
+.hasil__kotak { background:var(--panel); border:1px solid var(--line); border-radius:var(--r-l); box-shadow:var(--bayang-2); padding:18px 22px 20px; display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.hasil__kotak h3 { font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; margin-bottom:8px; }
+.hasil__kotak h3.angka { color:var(--oranye); } .hasil__kotak h3.data { color:var(--biru); }
+.hasil__kaki { grid-column:1/-1; border-top:1px solid var(--line); padding-top:10px; font-size:13px; color:var(--ink-2); display:flex; gap:14px; flex-wrap:wrap; }
+.angka-i { display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line); text-decoration:none; color:var(--ink); }
+.angka-i:last-child { border-bottom:0; }
+.angka-i b { font-size:13.5px; font-weight:600; }
+.angka-i small { display:block; font-size:11.5px; color:var(--ink-3); font-weight:500; }
+.angka-i span { font-family:var(--f-disp); font-weight:800; font-size:1.15rem; color:var(--oranye); white-space:nowrap; font-variant-numeric:tabular-nums; }
+.angka-i span i { font-style:normal; font-size:.7em; color:var(--ink-3); margin-left:3px; }
+.data-i { display:flex; align-items:flex-start; gap:9px; padding:8px 0; border-bottom:1px dashed var(--line); text-decoration:none; color:var(--ink); font-size:13.5px; }
+.data-i:last-child { border-bottom:0; }
+.data-i small { display:block; font-size:11.5px; color:var(--ink-3); }
+.pill { display:inline-block; font-family:var(--f-disp); font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:999px; white-space:nowrap; margin-top:2px; }
+.pill.ada{background:#E3F5EA;color:#1F8A4C} .pill.mohon{background:#FFF1DD;color:#B4690E} .pill.tidak{background:#FDE8E8;color:#C03A3A}
+.pill.lain{background:#EDF1F5;color:#5B6878} .pill.prov{background:#E9F1FB;color:#1D5FAD}
+:root[data-theme="dark"] .pill.ada{background:#173626;color:#5FD08F} :root[data-theme="dark"] .pill.mohon{background:#3A2A10;color:#F0B35C}
+:root[data-theme="dark"] .pill.tidak{background:#3A1C1C;color:#F08A8A} :root[data-theme="dark"] .pill.lain{background:#25334A;color:#A3B0C2} :root[data-theme="dark"] .pill.prov{background:#1B2E48;color:#7AB4F2}
+.kosong { font-size:13px; color:var(--ink-3); padding:8px 0; }
+
+/* ---------- dua gerbang ---------- */
+.blok { padding:56px 0 0; }
+.blok--akhir { padding-bottom:64px; }
+.kicker { font-family:var(--f-disp); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--biru); margin-bottom:8px; }
+.blok h2 { font-size:clamp(1.4rem,3vw,1.9rem); font-weight:800; margin-bottom:8px; }
+.blok > .wrap > p { color:var(--ink-2); max-width:70ch; margin:0 0 22px; }
+.gerbang { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.gerbang a { display:block; text-decoration:none; color:inherit; border-radius:var(--r-l); padding:28px 28px 26px; position:relative; overflow:hidden;
+  border:1px solid var(--line); background:var(--panel); box-shadow:var(--bayang); transition:transform .2s, box-shadow .2s; }
+.gerbang a:hover { transform:translateY(-4px); box-shadow:var(--bayang-2); }
+.gerbang a::before { content:""; position:absolute; inset:0 0 auto 0; height:6px; }
+.gerbang a.angka::before { background:linear-gradient(90deg,var(--oranye),var(--oranye-2)); }
+.gerbang a.data::before  { background:linear-gradient(90deg,var(--navy),var(--biru-2)); }
+.gerbang__ikon { width:52px; height:52px; border-radius:14px; display:grid; place-items:center; margin-bottom:16px; }
+.gerbang a.angka .gerbang__ikon { background:var(--oranye-wash); color:var(--oranye); }
+.gerbang a.data  .gerbang__ikon { background:var(--biru-wash); color:var(--biru); }
+.gerbang__ikon svg { width:26px; height:26px; }
+.gerbang small { font-family:var(--f-disp); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.gerbang a.angka small { color:var(--oranye); } .gerbang a.data small { color:var(--biru); }
+.gerbang h3 { font-size:1.35rem; font-weight:800; margin:4px 0 8px; }
+.gerbang p { margin:0 0 14px; color:var(--ink-2); font-size:14px; }
+.gerbang ul { margin:0; padding:0; list-style:none; display:grid; gap:6px; font-size:13.5px; color:var(--ink-2); }
+.gerbang li::before { content:"→ "; opacity:.55; }
+.gerbang .masuk { display:inline-block; margin-top:18px; font-family:var(--f-disp); font-weight:700; font-size:13.5px; }
+.gerbang a.angka .masuk { color:var(--oranye); } .gerbang a.data .masuk { color:var(--biru); }
+
+/* ---------- angka sorotan ---------- */
+.sorot { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.sorot a { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:16px 18px; text-decoration:none; color:inherit; border-top:4px solid var(--oranye); box-shadow:var(--bayang); }
+.sorot a:nth-child(2) { border-top-color:var(--oranye-2); } .sorot a:nth-child(3) { border-top-color:var(--teal); } .sorot a:nth-child(4) { border-top-color:var(--hijau); }
+.sorot .n { font-family:var(--f-disp); font-size:1.9rem; font-weight:800; line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+.sorot .n i { font-style:normal; font-size:.5em; color:var(--ink-3); margin-left:3px; }
+.sorot .l { font-size:12.5px; color:var(--ink-3); margin-top:6px; line-height:1.35; }
+.sorot__ket { font-size:12.5px; color:var(--ink-3); margin-top:10px; }
+
+/* ---------- layanan cepat ---------- */
+.layanan { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+.layanan a { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:20px 18px 18px; text-decoration:none; color:var(--ink); box-shadow:var(--bayang); display:block; transition:.18s; }
+.layanan a:hover { transform:translateY(-3px); box-shadow:var(--bayang-2); }
+.layanan__ikon { width:44px; height:44px; border-radius:12px; display:grid; place-items:center; margin-bottom:12px; background:var(--biru-wash); color:var(--biru); }
+.layanan__ikon.oranye { background:var(--oranye-wash); color:var(--oranye); }
+.layanan__ikon.hijau { background:#E3F5EA; color:var(--hijau); } .layanan__ikon.teal { background:#E0F4F6; color:var(--teal); }
+:root[data-theme="dark"] .layanan__ikon.hijau { background:#173626; } :root[data-theme="dark"] .layanan__ikon.teal { background:#12363B; }
+.layanan__ikon svg { width:22px; height:22px; }
+.layanan b { font-family:var(--f-disp); font-weight:700; font-size:15px; display:block; margin-bottom:4px; }
+.layanan span { font-size:13px; color:var(--ink-2); line-height:1.5; display:block; }
+
+/* ---------- alur ---------- */
+.alur { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.alur > div { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:20px; position:relative; }
+.alur .no { font-family:var(--f-disp); font-size:2rem; font-weight:800; color:var(--line-2); line-height:1; margin-bottom:8px; }
+.alur b { font-family:var(--f-disp); font-size:15px; display:block; margin-bottom:4px; }
+.alur p { margin:0; font-size:13.5px; color:var(--ink-2); }
+
+/* ---------- tentang ---------- */
+.tentang { display:grid; grid-template-columns:1.3fr 1fr; gap:24px; align-items:start; }
+.tentang .kartu { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:20px 22px; font-size:14px; color:var(--ink-2); }
+.tentang .kartu b { color:var(--ink); }
+.tentang dl { margin:0; display:grid; gap:8px; }
+.tentang dt { font-size:11.5px; color:var(--ink-3); font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+.tentang dd { margin:0 0 4px; }
+.singkatan { margin:14px 0 0; font-family:var(--f-disp); font-size:1.05rem; font-weight:600; color:var(--ink-2); letter-spacing:.01em; }
+.singkatan b { color:var(--oranye); font-weight:800; }
+.singkatan i { font-style:normal; color:var(--ink-3); font-size:12px; font-weight:500; display:block; margin-top:2px; }
+
+/* ---------- kaki ---------- */
+.kaki { margin-top:64px; background:var(--navy); color:rgba(255,255,255,.78); padding:36px 0 40px; font-size:13px; line-height:1.7; }
+:root[data-theme="dark"] .kaki { background:#081A31; }
+.kaki .wrap { display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:26px; }
+.kaki h5 { margin:0 0 8px; font-family:var(--f-disp); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:#fff; }
+.kaki ul { list-style:none; margin:0; padding:0; display:grid; gap:5px; }
+.kaki a { color:#fff; text-decoration:none; } .kaki a:hover { text-decoration:underline; }
+.kaki p { margin:0 0 8px; }
+
+@media (max-width:860px) {
+  .hero__in { padding:44px 22px 60px; }
+  .hasil__kotak, .gerbang, .alur, .tentang, .kaki .wrap { grid-template-columns:1fr; }
+  .sorot { grid-template-columns:1fr 1fr; }
+  .hasil { margin-top:-26px; }
+}
+@media (prefers-reduced-motion:reduce) { * { transition-duration:.01ms !important; } html { scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero__in">
+    <div class="merek">
+      <span class="merek__tanda" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V10a8 8 0 0 1 16 0v11"/><path d="M9 21v-6a3 3 0 0 1 6 0v6"/><path d="M2 21h20"/></svg></span>
+      <div><b>PINTAR Kukar</b><span>Pusat Informasi &amp; Layanan Statistik Terpadu · BPS Kabupaten Kutai Kartanegara</span></div>
+    </div>
+    <h1>Satu pintu untuk <em>angka</em> dan <em>layanan</em> statistik Kutai Kartanegara</h1>
+    <p class="lede">Lihat indikator strategis, cari ragam data yang tersedia, minta data, atau konsultasi langsung dengan pegawai BPS lewat Zoom — dari satu tempat, dengan satu tampilan.</p>
+    <div class="cari">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      <input type="search" id="q" placeholder="Cari angka atau data — misal: IPM, kemiskinan, penduduk per kecamatan" aria-label="Cari angka atau data" autocomplete="off">
+    </div>
+    <div class="contoh">Coba:
+      <button type="button" data-q="IPM">IPM</button>
+      <button type="button" data-q="penduduk miskin">penduduk miskin</button>
+      <button type="button" data-q="PDRB">PDRB</button>
+      <button type="button" data-q="pengangguran">pengangguran</button>
+      <button type="button" data-q="data per desa">data per desa</button>
+    </div>
+  </div>
+</section>
+
+<div class="hasil" id="hasil" hidden>
+  <div class="hasil__kotak">
+    <div><h3 class="angka">Angka</h3><div id="hasilAngka"></div></div>
+    <div><h3 class="data">Ragam data</h3><div id="hasilData"></div></div>
+    <div class="hasil__kaki" id="hasilKaki"></div>
+  </div>
+</div>
+
+<section class="blok" id="gerbang">
+  <div class="wrap">
+    <div class="kicker">Dua gerbang, satu keluarga</div>
+    <h2>Mau melihat angka, atau meminta data?</h2>
+    <p>Keduanya tersambung: setiap indikator punya jalan langsung ke katalog dan layanan PST, dan asisten PST bisa menjawab angka-angka kunci.</p>
+    <div class="gerbang">
+      <a class="angka" href="/indikator-strategis-bpskukar/" data-pintar="indikator">
+        <div class="gerbang__ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 6-6"/></svg></div>
+        <small>Gerbang angka</small>
+        <h3>Indikator Strategis Kukar</h3>
+        <p>Dashboard interaktif dari Booklet Indikator Strategis BPS: penduduk, ketenagakerjaan, PDRB, IPM, kemiskinan, dan pemerataan.</p>
+        <ul><li>Grafik tren 2021–2025 dan kartogram Kalimantan Timur</li><li>Bandingkan periode triwulan</li><li>Tombol “Minta data lengkap” di tiap indikator</li></ul>
+        <span class="masuk">Lihat angka →</span>
+      </a>
+      <a class="data" href="/katalog-data-bpskukar/" data-pintar="katalog">
+        <div class="gerbang__ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <small>Gerbang layanan</small>
+        <h3>Katalog Data &amp; Layanan PST</h3>
+        <p>Cek dulu apa yang tersedia sampai level mana, unduh yang sudah terbit, atau ajukan permintaan dan konsultasi ke Pelayanan Statistik Terpadu.</p>
+        <ul><li>Katalog ragam data dengan tautan langsung ke publikasi</li><li>Konsultasi daring via Zoom, jadwal paling cepat besok</li><li>Kode tiket untuk memantau permintaan</li></ul>
+        <span class="masuk">Buka layanan →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="blok" id="sorotan">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--oranye)">Angka sorotan</div>
+    <h2>Kutai Kartanegara dalam empat angka</h2>
+    <p>Diambil dari isi terbit Indikator Strategis — yang sama dengan yang dikelola pegawai PST.</p>
+    <div class="sorot" id="sorot"></div>
+    <div class="sorot__ket" id="sorotKet"></div>
+  </div>
+</section>
+
+<section class="blok" id="layanan">
+  <div class="wrap">
+    <div class="kicker">Layanan cepat</div>
+    <h2>Langsung ke yang Anda butuhkan</h2>
+    <p>Semua layanan konsultasi dan perpustakaan gratis.</p>
+    <div class="layanan">
+      <a href="/katalog-data-bpskukar/konsultasi.html" data-pintar="konsultasi">
+        <div class="layanan__ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3z"/></svg></div>
+        <b>Konsultasi daring</b><span>Isi kebutuhan, pilih jadwal (paling cepat besok), dapat narasumber yang tepat dan tautan Zoom.</span>
+      </a>
+      <a href="/katalog-data-bpskukar/sahabat.html" data-pintar="sahabat">
+        <div class="layanan__ikon oranye"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2"/></svg></div>
+        <b>Cek status permintaan</b><span>Masukkan kode tiket PST atau KON dan empat digit terakhir nomor HP Anda.</span>
+      </a>
+      <a href="/katalog-data-bpskukar/?tanya=data%20apa%20saja%20yang%20tersedia">
+        <div class="layanan__ikon hijau"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.2A8 8 0 1 1 21 12z"/></svg></div>
+        <b>Tanya asisten PST</b><span>Jawaban cepat dari katalog, jawaban baku, dan angka indikator — apakah data ada, cara memintanya, jam layanan.</span>
+      </a>
+      <a href="/katalog-data-bpskukar/admin.html" data-pintar="pegawai">
+        <div class="layanan__ikon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <b>Ruang pegawai</b><span>Untuk petugas PST: buku tamu, tiket, papan tanya, konsultasi, dan penyuntingan isi indikator.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="blok" id="alur">
+  <div class="wrap">
+    <div class="kicker">Dari angka ke layanan</div>
+    <h2>Tiga langkah, satu klik di antaranya</h2>
+    <p>Inilah yang menyatukan kedua gerbang: angka bukan ujung perjalanan, melainkan pintu masuk ke layanan.</p>
+    <div class="alur">
+      <div><div class="no">1</div><b>Lihat</b><p>Temukan angka kuncinya di Indikator Strategis — misalnya persentase penduduk miskin 2025.</p></div>
+      <div><div class="no">2</div><b>Minta</b><p>Tekan “Minta data lengkap” — Katalog Data terbuka dengan pencarian terisi: tersedia sampai level mana, unduh atau ajukan.</p></div>
+      <div><div class="no">3</div><b>Konsultasi</b><p>Masih perlu penjelasan? Ajukan konsultasi daring; petugas menyiapkan narasumber sesuai topik dan Anda dapat tautan Zoom.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="blok blok--akhir" id="tentang">
+  <div class="wrap">
+    <div class="kicker">Tentang</div>
+    <h2>Apa itu PINTAR Kukar?</h2>
+    <div class="tentang">
+      <div class="kartu">
+        <b>PINTAR Kukar</b> adalah payung layanan digital Pelayanan Statistik Terpadu (PST) BPS Kabupaten Kutai Kartanegara:
+        dua situs yang saling tersambung dan satu ruang kerja pegawai di belakangnya. Angka yang tampil di dashboard,
+        katalog yang dicari sahabat data, jawaban asisten, dan tiket layanan dikelola dari satu tempat oleh petugas PST.
+        <p class="singkatan"><b>P</b>usat <b>In</b>formasi dan Layanan S<b>ta</b>tistik Te<b>r</b>padu<i>PINTAR — cerdas dengan data</i></p>
+        <p style="margin:14px 0 0;font-size:13px;color:var(--ink-3)">Alat bantu layanan; untuk keperluan resmi gunakan publikasi asli di <a href="https://kukarkab.bps.go.id" target="_blank" rel="noopener">kukarkab.bps.go.id</a>.</p>
+      </div>
+      <div class="kartu">
+        <dl id="kontak">
+          <dt>Kantor</dt><dd id="kAlamat">BPS Kabupaten Kutai Kartanegara</dd>
+          <dt>Jam layanan PST</dt><dd id="kJam">Hari kerja</dd>
+          <dt>Telepon / WhatsApp</dt><dd id="kTelepon">—</dd>
+          <dt>Surel</dt><dd id="kSurel">—</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="kaki">
+  <div class="wrap">
+    <div>
+      <h5>PINTAR Kukar</h5>
+      <p>Pusat Informasi &amp; Layanan Statistik Terpadu — BPS Kabupaten Kutai Kartanegara. Satu pintu untuk angka dan layanan statistik.</p>
+      <p>&copy; <span id="tahun">2026</span> BPS Kabupaten Kutai Kartanegara · Data mencerdaskan bangsa</p>
+    </div>
+    <div>
+      <h5>Gerbang</h5>
+      <ul>
+        <li><a href="/indikator-strategis-bpskukar/" data-pintar="indikator">Indikator Strategis</a></li>
+        <li><a href="/katalog-data-bpskukar/" data-pintar="katalog">Katalog Data &amp; PST</a></li>
+        <li><a href="/katalog-data-bpskukar/konsultasi.html" data-pintar="konsultasi">Konsultasi daring</a></li>
+        <li><a href="/katalog-data-bpskukar/sahabat.html" data-pintar="sahabat">Cek tiket</a></li>
+        <li><a href="/katalog-data-bpskukar/admin.html" data-pintar="pegawai">Ruang pegawai</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Resmi</h5>
+      <ul>
+        <li><a href="https://kukarkab.bps.go.id" target="_blank" rel="noopener">BPS Kabupaten Kutai Kartanegara</a></li>
+        <li><a href="https://pst.bps.go.id" target="_blank" rel="noopener">PST daring BPS</a></li>
+        <li><a href="https://kaltim.bps.go.id" target="_blank" rel="noopener">BPS Provinsi Kalimantan Timur</a></li>
+        <li><a href="https://www.bps.go.id" target="_blank" rel="noopener">Badan Pusat Statistik</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- Satu sumber kunci & data: dibaca dari dua situs saudara (satu domain). Bila salah satu
+     belum terpasang, beranda tetap tampil; hanya pencarian/angka sorotannya yang kosong. -->
+<script src="/katalog-data-bpskukar/assets/config.js"></script>
+<script src="/katalog-data-bpskukar/assets/katalog.js"></script>
+<script src="/katalog-data-bpskukar/assets/cari.js"></script>
+<script src="/indikator-strategis-bpskukar/assets/data.js"></script>
+<script src="/indikator-strategis-bpskukar/assets/muat.js"></script>
+<script>
+(function () {
+  "use strict";
+  var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); };
+  var fmt = function (n, dec) { return Number(n || 0).toLocaleString("id-ID", { minimumFractionDigits: dec || 0, maximumFractionDigits: dec || 0 }); };
+  var T = (window.PINTAR && window.PINTAR.TAUTAN) || { indikator: "/indikator-strategis-bpskukar/", katalog: "/katalog-data-bpskukar/" };
+  var K = window.KONFIG || {}, KAT = window.KATALOG, CARI = window.CARI;
+  var IND = null, LABEL = KAT ? KAT.LABEL : {};
+
+  document.getElementById("tahun").textContent = new Date().getFullYear();
+  if (K.ALAMAT) document.getElementById("kAlamat").textContent = K.ALAMAT;
+  if (K.JAM_LAYANAN) document.getElementById("kJam").textContent = K.JAM_LAYANAN;
+  if (K.TELEPON) document.getElementById("kTelepon").textContent = K.TELEPON;
+  if (K.SUREL) document.getElementById("kSurel").textContent = K.SUREL;
+  Array.prototype.forEach.call(document.querySelectorAll("a[data-pintar]"), function (a) { if (T[a.dataset.pintar]) a.href = T[a.dataset.pintar]; });
+
+  /* ---- angka sorotan ---- */
+  var ANCHOR = { ekonomi: "#ekonomi", manusia: "#manusia", pemerataan: "#kemiskinan", demografi: "#kependudukan", ketenagakerjaan: "#kependudukan" };
+  function gambarSorot(info) {
+    var w = document.getElementById("sorot"), ket = document.getElementById("sorotKet");
+    if (!IND || !IND.indikator) { w.innerHTML = ""; ket.textContent = "Angka belum tersedia — situs indikator belum terpasang."; return; }
+    var ids = (IND.teks && IND.teks.hero && IND.teks.hero.mini) || ["penduduk", "lpe", "ipm", "p0"];
+    var pilih = ids.map(function (id) { return IND.indikator.filter(function (x) { return x.id === id; })[0]; }).filter(Boolean).slice(0, 4);
+    w.innerHTML = pilih.map(function (it) {
+      return '<a href="' + T.indikator + (ANCHOR[it.kat] || "#ringkasan") + '"><div class="n">' + fmt(it.value, it.dec) + (it.unit ? "<i>" + esc(it.unit) + "</i>" : "") + "</div>" +
+        '<div class="l">' + esc(it.label) + (it.abbr ? " · " + esc(it.abbr) : "") + "</div></a>";
+    }).join("");
+    var s = { server: "Isi terbit versi " + (info.versi || "-") + (info.diubah_pada ? ", diperbarui " + new Date(info.diubah_pada).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }) : ""),
+              cache: "Server sedang tidak terjangkau; menampilkan salinan terakhir.", demo: "Mode demo: isi dari simpanan peramban.", awal: "Isi dari berkas awal situs indikator." }[info.sumber] || "";
+    ket.textContent = s + " · Sumber: Booklet Indikator Strategis BPS Kabupaten Kutai Kartanegara.";
+  }
+  var siapInd = window.INDIKATOR ? window.INDIKATOR.muat().then(function (r) { IND = r.data; gambarSorot(r); return IND; }).catch(function () { gambarSorot({}); })
+                                 : Promise.resolve(null);
+  if (!window.INDIKATOR) gambarSorot({});
+
+  /* ---- pencarian terpadu: angka + ragam data ---- */
+  var SINONIM = { penduduk: ["jumlah penduduk", "populasi"], lpp: ["pertumbuhan penduduk"], tpak: ["angkatan kerja"], tpt: ["pengangguran"],
+    "pdrb-adhb": ["pdrb", "harga berlaku"], "pdrb-adhk": ["harga konstan"], lpe: ["pertumbuhan ekonomi"], "pdrb-kapita": ["per kapita"],
+    uhh: ["harapan hidup"], hls: ["harapan lama sekolah"], rls: ["lama sekolah"], ppp: ["pengeluaran", "daya beli"], ipm: ["pembangunan manusia"],
+    gini: ["gini", "ketimpangan"], ikg: ["gender"], p0: ["miskin", "kemiskinan"], rentan: ["rentan", "kemiskinan"] };
+  var HENTI = CARI ? CARI.HENTI : [];
+  function cariAngka(q) {
+    if (!IND || !IND.indikator) return [];
+    var t = " " + q.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ") + " ";
+    var singkat = (q.match(/\b(?:[A-Z]{2,6}[0-9]?|[A-Z][0-9])\b/g) || []).map(function (w) { return w.toLowerCase(); });
+    return IND.indikator.map(function (it) {
+      var skor = 0, kode = String(it.abbr || "").split(/[ ·]/)[0].toLowerCase();
+      if (singkat.indexOf(it.id) !== -1 || (kode && singkat.indexOf(kode) !== -1)) skor += 5;
+      if (t.indexOf(" " + String(it.label).toLowerCase() + " ") !== -1) skor += 5;
+      (SINONIM[it.id] || []).forEach(function (sn) { if (t.indexOf(sn) !== -1) skor += 3; });
+      String(it.label).toLowerCase().split(/\s+/).forEach(function (w) { if (w.length >= 5 && HENTI.indexOf(w) === -1 && t.indexOf(w) !== -1) skor += 1; });
+      return { it: it, skor: skor };
+    }).filter(function (x) { return x.skor >= 3; }).sort(function (a, b) { return b.skor - a.skor; }).slice(0, 4).map(function (x) { return x.it; });
+  }
+  function cari(q) {
+    var box = document.getElementById("hasil");
+    q = q.trim();
+    if (q.length < 2) { box.hidden = true; return; }
+    var angka = cariAngka(q), data = CARI ? CARI.cocokkan(q, 5) : [];
+    document.getElementById("hasilAngka").innerHTML = angka.length ? angka.map(function (it) {
+      return '<a class="angka-i" href="' + T.indikator + (ANCHOR[it.kat] || "#ringkasan") + '"><span style="flex:1;min-width:0"><b>' + esc(it.label) + "</b><small>" + esc(it.abbr || "") + "</small></span>" +
+        "<span>" + fmt(it.value, it.dec) + (it.unit ? "<i>" + esc(it.unit) + "</i>" : "") + "</span></a>";
+    }).join("") : '<div class="kosong">' + (IND ? "Tidak ada indikator yang cocok." : "Angka belum tersedia.") + "</div>";
+    document.getElementById("hasilData").innerHTML = data.length ? data.map(function (d) {
+      return '<a class="data-i" href="' + T.katalog + "?q=" + encodeURIComponent(d.n) + '"><span class="pill ' + esc(d.st) + '">' + esc(LABEL[d.st] || d.st) + "</span>" +
+        "<span><b>" + esc(d.n) + "</b><small>" + (d.lv && d.lv !== "—" ? "level terendah " + esc(d.lv) + " · " : "") + esc(d.sm) + "</small></span></a>";
+    }).join("") : '<div class="kosong">' + (CARI ? "Tidak ada ragam data yang cocok." : "Katalog belum tersedia.") + "</div>";
+    document.getElementById("hasilKaki").innerHTML =
+      '<a href="' + T.katalog + "?q=" + encodeURIComponent(q) + '">Semua hasil di Katalog Data →</a>' +
+      '<a href="' + T.katalog + "?tanya=" + encodeURIComponent(q) + '">Tanya asisten PST: “' + esc(q) + '” →</a>';
+    box.hidden = false;
+  }
+  var q = document.getElementById("q"), jeda;
+  q.addEventListener("input", function () { clearTimeout(jeda); jeda = setTimeout(function () { siapInd.then(function () { cari(q.value); }); }, 160); });
+  q.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); siapInd.then(function () { cari(q.value); }); } });
+  Array.prototype.forEach.call(document.querySelectorAll(".contoh button"), function (b) {
+    b.onclick = function () { q.value = b.dataset.q; siapInd.then(function () { cari(b.dataset.q); }); };
+  });
+  var awal = new URLSearchParams(location.search).get("q");
+  if (awal) { q.value = awal; siapInd.then(function () { cari(awal); }); }
+})();
+</script>
+</body>
+</html>
