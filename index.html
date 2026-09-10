@@ -173,11 +173,11 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 .gerbang a.angka .masuk { color:var(--oranye-teks); } .gerbang a.data .masuk { color:var(--biru-teks); }
 
 /* ---------- angka sorotan ---------- */
-.sorot { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.sorot { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
 .sorot a { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:16px 18px; text-decoration:none; color:inherit; border-top:4px solid var(--oranye); box-shadow:var(--bayang); }
 .sorot a:nth-child(2) { border-top-color:var(--oranye-2); } .sorot a:nth-child(3) { border-top-color:var(--teal); } .sorot a:nth-child(4) { border-top-color:var(--hijau); }
 .sorot .n { font-family:var(--f-disp); font-size:1.9rem; font-weight:800; line-height:1; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
-.sorot .n i { font-style:normal; font-size:.5em; color:var(--ink-3); margin-left:3px; }
+.sorot .n i { font-style:normal; font-size:.5em; color:var(--ink-3); margin-left:3px; display:inline-block; }
 .sorot .l { font-size:12.5px; color:var(--ink-3); margin-top:6px; line-height:1.35; }
 .sorot__ket { font-size:12.5px; color:var(--ink-3); margin-top:10px; }
 
@@ -226,9 +226,10 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 @media (max-width:860px) {
   .hero__in { padding:44px 22px 60px; }
   .hasil__kotak, .gerbang, .alur, .tentang, .kaki .wrap { grid-template-columns:1fr; }
-  .sorot { grid-template-columns:1fr 1fr; }
+  .sorot { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
   .hasil { margin-top:-26px; }
 }
+@media (max-width:400px) { .sorot .n { font-size:1.55rem; } .sorot a { padding:14px 14px; } }
 @media (prefers-reduced-motion:reduce) { * { transition-duration:.01ms !important; } html { scroll-behavior:auto; } }
 </style>
 </head>

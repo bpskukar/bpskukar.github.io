@@ -9,7 +9,7 @@
    • Supabase / Web API: tidak pernah disimpan (data langsung, ada sesi).
    Nomor VERSI diubah tiap terbit agar salinan lama dibersihkan.
    ========================================================================== */
-var VERSI = "pintar-2026-09-10c";
+var VERSI = "pintar-2026-09-10d";
 var LURING = "/luring.html";
 var AWAL = [
   "/", "/index.html", LURING, "/manifest.webmanifest", "/assets/pintar.js",
@@ -22,7 +22,7 @@ var AWAL = [
   "/katalog-data-bpskukar/assets/theme.css", "/katalog-data-bpskukar/assets/config.js",
   "/katalog-data-bpskukar/assets/app.js", "/katalog-data-bpskukar/assets/katalog.js",
   "/katalog-data-bpskukar/assets/cari.js", "/katalog-data-bpskukar/assets/chat.js",
-  "/katalog-data-bpskukar/assets/pengetahuan.js", "/katalog-data-bpskukar/assets/glosarium.js", "/katalog-data-bpskukar/assets/terbitan-awal.js",
+  "/katalog-data-bpskukar/assets/pengetahuan.js", "/katalog-data-bpskukar/assets/glosarium.js", "/katalog-data-bpskukar/assets/paham.js", "/katalog-data-bpskukar/assets/terbitan-awal.js",
   "/indikator-strategis-bpskukar/assets/kartu.js",
   "/katalog-data-bpskukar/assets/konsultasi.js", "/katalog-data-bpskukar/assets/sahabat.js"
 ];
@@ -32,7 +32,7 @@ var JANGAN = /supabase\.co|webapi\.bps\.go\.id|wa\.me|api\.whatsapp\.com/;
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(VERSI).then(function (c) {
     /* satu per satu supaya berkas yang belum ada (situs belum terpasang) tidak menggagalkan pemasangan */
-    return Promise.all(AWAL.map(function (u) { return c.add(u).catch(function () {}); }));
+    return Promise.all(AWAL.map(function (u) { return c.add(new Request(u, { cache: "reload" })).catch(function () {}); }));
   }).then(function () { return self.skipWaiting(); }));
 });
 
@@ -58,8 +58,10 @@ self.addEventListener("fetch", function (e) {
 
   if (sendiri) {
     /* jaringan dulu, salinan bila gagal; halaman luring bila navigasi tanpa salinan */
+    /* cache:"no-cache" = selalu tanyakan ke server (ETag), supaya berkas yang baru diunggah
+       langsung terpakai dan tidak tertahan salinan HTTP 10 menit milik GitHub Pages */
     e.respondWith(
-      denganBatas(fetch(req), 4000).then(function (r) {
+      denganBatas(fetch(req, { cache: "no-cache" }), 4000).then(function (r) {
         if (r && r.ok) { var salin = r.clone(); caches.open(VERSI).then(function (c) { c.put(req, salin); }); }
         return r;
       }).catch(function () {
