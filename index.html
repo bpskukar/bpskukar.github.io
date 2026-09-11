@@ -123,7 +123,7 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 .kicker { font-family:var(--f-disp); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--biru-teks); margin-bottom:8px; }
 .blok h2 { font-size:clamp(1.4rem,3vw,1.9rem); font-weight:800; margin-bottom:8px; }
 .blok > .wrap > p { color:var(--ink-2); max-width:70ch; margin:0 0 22px; }
-.gerbang { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.gerbang { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
 /* ---------- hari ini: angka hari ini + terbit baru ---------- */
 .hariini { display:grid; grid-template-columns:1.05fr 1fr; gap:18px; }
 .fakta { background:var(--panel); border:1px solid var(--line); border-left:5px solid var(--oranye); border-radius:var(--r); padding:20px 22px 18px; display:flex; flex-direction:column; }
@@ -159,18 +159,23 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 .gerbang a::before { content:""; position:absolute; inset:0 0 auto 0; height:6px; }
 .gerbang a.angka::before { background:linear-gradient(90deg,var(--oranye),var(--oranye-2)); }
 .gerbang a.data::before  { background:linear-gradient(90deg,var(--navy),var(--biru-2)); }
+.gerbang a.desa::before  { background:linear-gradient(90deg,#0E3D22,var(--hijau)); }
 .gerbang__ikon { width:52px; height:52px; border-radius:14px; display:grid; place-items:center; margin-bottom:16px; }
 .gerbang a.angka .gerbang__ikon { background:var(--oranye-wash); color:var(--oranye-teks); }
 .gerbang a.data  .gerbang__ikon { background:var(--biru-wash); color:var(--biru-teks); }
+.gerbang a.desa  .gerbang__ikon { background:var(--hijau-wash); color:var(--hijau-teks); }
 .gerbang__ikon svg { width:26px; height:26px; }
 .gerbang small { font-family:var(--f-disp); font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
 .gerbang a.angka small { color:var(--oranye-teks); } .gerbang a.data small { color:var(--biru-teks); }
+.gerbang a.desa small { color:var(--hijau-teks); }
 .gerbang h3 { font-size:1.35rem; font-weight:800; margin:4px 0 8px; }
 .gerbang p { margin:0 0 14px; color:var(--ink-2); font-size:14px; }
 .gerbang ul { margin:0; padding:0; list-style:none; display:grid; gap:6px; font-size:13.5px; color:var(--ink-2); }
 .gerbang li::before { content:"→ "; opacity:.55; }
 .gerbang .masuk { display:inline-block; margin-top:18px; font-family:var(--f-disp); font-weight:700; font-size:13.5px; }
 .gerbang a.angka .masuk { color:var(--oranye-teks); } .gerbang a.data .masuk { color:var(--biru-teks); }
+.gerbang a.desa .masuk { color:var(--hijau-teks); }
+@media (max-width:1040px){ .gerbang { grid-template-columns:1fr 1fr; } }
 
 /* ---------- angka sorotan ---------- */
 .sorot { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
@@ -280,9 +285,9 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 
 <section class="blok" id="gerbang">
   <div class="wrap">
-    <div class="kicker">Dua gerbang, satu keluarga</div>
-    <h2>Mau melihat angka, atau meminta data?</h2>
-    <p>Keduanya tersambung: setiap indikator punya jalan langsung ke katalog dan layanan PST, dan asisten PST bisa menjawab angka-angka kunci.</p>
+    <div class="kicker">Tiga gerbang, satu keluarga</div>
+    <h2>Mau melihat angka, meminta data, atau belajar mengelolanya?</h2>
+    <p>Ketiganya tersambung: setiap indikator punya jalan langsung ke katalog dan layanan PST, asisten PST bisa menjawab angka-angka kunci, dan kelas Desa Cantik mengajarkan cara membaca serta mengelolanya sendiri.</p>
     <div class="gerbang">
       <a class="angka" href="/indikator-strategis-bpskukar/" data-pintar="indikator">
         <div class="gerbang__ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 6-6"/></svg></div>
@@ -299,6 +304,14 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
         <p>Cek dulu apa yang tersedia sampai level mana, unduh yang sudah terbit, atau ajukan permintaan dan konsultasi ke Pelayanan Statistik Terpadu.</p>
         <ul><li>Katalog ragam data dengan tautan langsung ke publikasi</li><li>Konsultasi daring via Zoom, jadwal paling cepat besok</li><li>Kode tiket untuk memantau permintaan</li></ul>
         <span class="masuk">Buka layanan →</span>
+      </a>
+      <a class="desa" href="/desa-cantik-bpskukar/" data-pintar="descan">
+        <div class="gerbang__ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M10 21v-6h4v6"/></svg></div>
+        <small>Gerbang belajar</small>
+        <h3>Desa Cantik &amp; Kelas Statistik Desa</h3>
+        <p>Pembinaan Desa Cinta Statistik di Kutai Kartanegara: capaian desa binaan, proses pembinaannya, dan kelas belajar mandiri yang terbuka untuk siapa saja.</p>
+        <ul><li>Capaian 2022–2026 dan tiga kali terbaik se-Kaltim</li><li>15 modul belajar, 106 soal latihan, tanpa pendaftaran</li><li>Dari membaca angka sampai DTSEN dan FASIH</li></ul>
+        <span class="masuk">Mulai belajar →</span>
       </a>
     </div>
   </div>
@@ -411,6 +424,7 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
       <ul>
         <li><a href="/indikator-strategis-bpskukar/" data-pintar="indikator">Indikator Strategis</a></li>
         <li><a href="/katalog-data-bpskukar/" data-pintar="katalog">Katalog Data &amp; PST</a></li>
+        <li><a href="/desa-cantik-bpskukar/" data-pintar="descan">Desa Cantik</a></li>
         <li><a href="/katalog-data-bpskukar/konsultasi.html" data-pintar="konsultasi">Konsultasi daring</a></li>
         <li><a href="/katalog-data-bpskukar/sahabat.html" data-pintar="sahabat">Cek tiket</a></li>
         <li><a href="/katalog-data-bpskukar/admin.html" data-pintar="pegawai">Ruang pegawai</a></li>

@@ -1,6 +1,7 @@
 /* ============================================================================
    PINTAR Kukar — service worker (repositori bpskukar.github.io, jalur /sw.js)
-   Melayani ketiga situs karena satu domain: beranda, indikator, katalog.
+   Melayani keempat situs karena satu domain: beranda, indikator, katalog,
+   dan Desa Cantik (termasuk Kelas Statistik Desa yang bisa dibaca luring).
 
    Aturan:
    • Berkas situs sendiri: coba jaringan dulu (maks 4 detik), simpan salinan;
@@ -9,7 +10,7 @@
    • Supabase / Web API: tidak pernah disimpan (data langsung, ada sesi).
    Nomor VERSI diubah tiap terbit agar salinan lama dibersihkan.
    ========================================================================== */
-var VERSI = "pintar-2026-09-10d";
+var VERSI = "pintar-2026-09-11a";
 var LURING = "/luring.html";
 var AWAL = [
   "/", "/index.html", LURING, "/manifest.webmanifest", "/assets/pintar.js",
@@ -24,7 +25,12 @@ var AWAL = [
   "/katalog-data-bpskukar/assets/cari.js", "/katalog-data-bpskukar/assets/chat.js",
   "/katalog-data-bpskukar/assets/pengetahuan.js", "/katalog-data-bpskukar/assets/glosarium.js", "/katalog-data-bpskukar/assets/paham.js", "/katalog-data-bpskukar/assets/terbitan-awal.js",
   "/indikator-strategis-bpskukar/assets/kartu.js",
-  "/katalog-data-bpskukar/assets/konsultasi.js", "/katalog-data-bpskukar/assets/sahabat.js"
+  "/katalog-data-bpskukar/assets/konsultasi.js", "/katalog-data-bpskukar/assets/sahabat.js",
+  "/desa-cantik-bpskukar/", "/desa-cantik-bpskukar/index.html", "/desa-cantik-bpskukar/kelas.html",
+  "/desa-cantik-bpskukar/assets/dc.css", "/desa-cantik-bpskukar/assets/kelas.css",
+  "/desa-cantik-bpskukar/assets/capaian.js", "/desa-cantik-bpskukar/assets/galeri.js",
+  "/desa-cantik-bpskukar/assets/kelas.js", "/desa-cantik-bpskukar/assets/modul-baca.js",
+  "/desa-cantik-bpskukar/assets/modul-desa.js"
 ];
 var CDN = /^(https:\/\/cdn\.jsdelivr\.net|https:\/\/cdnjs\.cloudflare\.com|https:\/\/fonts\.googleapis\.com|https:\/\/fonts\.gstatic\.com)\//;
 var JANGAN = /supabase\.co|webapi\.bps\.go\.id|wa\.me|api\.whatsapp\.com/;
