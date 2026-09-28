@@ -177,6 +177,7 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 .gerbang a.desa .masuk { color:var(--hijau-teks); }
 @media (max-width:1040px){ .gerbang { grid-template-columns:1fr 1fr; } }
 
+.fakta__pekan { display:inline-block; margin-left:10px; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:.02em; background:rgba(240,147,43,.14); color:var(--oranye-teks); vertical-align:middle; }
 /* ---------- angka sorotan ---------- */
 .sorot { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
 .sorot a { background:var(--panel); border:1px solid var(--line); border-radius:var(--r); padding:16px 18px; text-decoration:none; color:inherit; border-top:4px solid var(--oranye); box-shadow:var(--bayang); }
@@ -275,7 +276,7 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
   <div class="wrap">
     <div class="kicker">Hari ini</div>
     <h2>Yang baru dari BPS Kukar</h2>
-    <p>Satu angka yang berganti tiap hari, dan terbitan terbaru — supaya ada alasan mampir walau tidak sedang mencari data.</p>
+    <p>Satu angka yang berganti tiap hari kerja, dan terbitan terbaru — supaya ada alasan mampir walau tidak sedang mencari data.</p>
     <div class="hariini">
       <div class="fakta" id="fakta"><div class="fakta__m">Memuat angka…</div></div>
       <div class="terbit" id="terbit"><div class="kicker" style="color:var(--biru)">Terbit baru</div><div class="terbit__kosong">Memuat…</div></div>
@@ -452,6 +453,8 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
 <script src="/indikator-strategis-bpskukar/assets/data.js"></script>
 <script src="/indikator-strategis-bpskukar/assets/muat.js"></script>
 <script src="/indikator-strategis-bpskukar/assets/kartu.js"></script>
+<script src="/desa-cantik-bpskukar/assets/capaian.js"></script>
+<script src="assets/fakta.js"></script>
 <script src="/katalog-data-bpskukar/assets/asisten.js" defer></script>
 <script>
 (function () {
@@ -488,69 +491,50 @@ h1,h2,h3 { font-family:var(--f-disp); letter-spacing:-.02em; margin:0; }
                                  : Promise.resolve(null);
   if (!window.INDIKATOR) gambarSorot({});
 
-  /* ---- angka hari ini: satu fakta berganti tiap hari, dari isi indikator terbit ---- */
-  var ANCHOR_ID = { p0: "#kemiskinan", rentan: "#kemiskinan" };
-  function faktaDari(D) {
-    var f = [], by = {}; (D.indikator || []).forEach(function (it) { by[it.id] = it; });
-    var v = function (id) { return by[id] ? Number(by[id].value) : NaN; };
-    var th = function (it) { var m = String(it.abbr || "").match(/20\d\d/); return m ? " (" + m[0] + ")" : ""; };
-    var tambah = function (id, kalimat, glos) { if (by[id] && !isNaN(v(id))) f.push({ it: by[id], kalimat: kalimat, glos: glos || id }); };
-    if (by.p0 && v("p0") > 0) tambah("p0", fmt(v("p0"), 2) + "% penduduk Kukar tergolong miskin" + th(by.p0) + " — kira-kira 1 dari " + Math.round(100 / v("p0")) + " orang.");
-    tambah("penduduk", "Penduduk Kutai Kartanegara " + fmt(v("penduduk"), 0) + " jiwa" + (by.penduduk && by.penduduk.tag ? " — " + by.penduduk.tag : "") + ".");
-    tambah("tpt", "Dari 100 orang angkatan kerja di Kukar, sekitar " + Math.round(v("tpt")) + " orang menganggur (TPT " + fmt(v("tpt"), 2) + "%)" + th(by.tpt) + ".");
-    if (by.ipm) tambah("ipm", "IPM Kukar " + fmt(v("ipm"), 2) + th(by.ipm) + " — kategori " + (v("ipm") >= 80 ? "sangat tinggi" : v("ipm") >= 70 ? "tinggi" : v("ipm") >= 60 ? "sedang" : "rendah") + ".");
-    tambah("lpe", "Ekonomi Kukar tumbuh " + fmt(v("lpe"), 2) + "%" + th(by.lpe) + " — dihitung atas dasar harga konstan.");
-    tambah("uhh", "Bayi yang lahir di Kukar diperkirakan hidup " + fmt(v("uhh"), 2) + " tahun.");
-    if (by.rls) tambah("rls", "Orang dewasa Kukar rata-rata bersekolah " + fmt(v("rls"), 2) + " tahun — " + (v("rls") >= 12 ? "setara tamat SMA" : v("rls") >= 9 ? "setara tamat SMP" : "belum tamat SMP") + ".");
-    tambah("hls", "Anak Kukar yang masuk SD sekarang diharapkan bersekolah " + fmt(v("hls"), 2) + " tahun.");
-    if (by.gini) tambah("gini", "Rasio Gini Kukar " + fmt(v("gini"), 3) + " — ketimpangan pengeluaran " + (v("gini") < 0.3 ? "rendah" : v("gini") <= 0.5 ? "sedang" : "tinggi") + ".");
-    tambah("tpak", fmt(v("tpak"), 2) + "% penduduk usia kerja Kukar bekerja atau sedang mencari kerja (TPAK).");
-    tambah("pdrb-kapita", "PDRB per kapita Kukar Rp" + fmt(v("pdrb-kapita"), 1) + " juta per tahun — bukan pendapatan per orang.", "pdrb-kapita");
-    tambah("rentan", fmt(v("rentan"), 2) + "% penduduk Kukar rentan miskin: tidak miskin, tetapi mudah jatuh miskin bila ada guncangan.");
-    tambah("lpp", "Penduduk Kukar bertambah " + fmt(v("lpp"), 2) + "% per tahun — sekitar " + Math.round(v("lpp") * 10) + " orang tiap 1.000 penduduk.");
-    tambah("ppp", "Pengeluaran per kapita Kukar (disesuaikan daya beli) sekitar Rp" + fmt(v("ppp") / 1000, 1) + " juta per orang per tahun.");
-    return f;
-  }
+  /* ---- angka hari ini: satu fakta per hari kerja (Senin–Jumat); Sabtu–Minggu memakai fakta Jumat.
+          Kumpulan & jadwalnya di assets/fakta.js — tambah fakta di sana. ---- */
   function seriFakta(D, id) {
     var km = D.kemiskinan || {}, pt = D.pdrbTahun || {}, ipm = D.ipm || {};
     var m = { p0: [km.label, km.p0], ipm: [ipm.label, ipm.nilai], lpe: [pt.label, pt.lpe] }[id];
     return m && m[0] && m[1] ? { label: m[0], nilai: m[1] } : null;
   }
-  var FAKTA = [], faktaIdx = 0;
+  var FAKTA = [], faktaIdx = 0, JADWAL = null;
   function gambarFakta() {
-    var w = document.getElementById("fakta");
-    if (!FAKTA.length) { w.innerHTML = '<div class="fakta__m">Angka belum tersedia — situs indikator belum terpasang.</div>'; return; }
-    var f = FAKTA[faktaIdx % FAKTA.length], it = f.it;
-    var anchor = ANCHOR_ID[it.id] || ANCHOR[it.kat] || "#ringkasan";
-    var tgl = new Date().toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    var w = document.getElementById("fakta"), FH = window.FAKTA_HARIAN;
+    if (!FAKTA.length) { w.innerHTML = '<div class="fakta__m">Angka belum tersedia — data situs belum termuat.</div>'; return; }
+    var f = FAKTA[((faktaIdx % FAKTA.length) + FAKTA.length) % FAKTA.length], it = f.it;
+    var tgl = JADWAL && FH ? FH.labelTanggal(JADWAL.terbit) : new Date().toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    var tautanUtama = (f.a && f.a[0] ? f.a[0].h : "/"), tautanPenuh = /^https?:/.test(tautanUtama) ? tautanUtama : location.origin + tautanUtama;
+    var catatan = f.c || (it && it.note ? String(it.note).replace(/\*\*/g, "") : "");
     w.innerHTML =
-      '<div class="kicker" style="color:var(--oranye-teks)">Angka hari ini · ' + esc(tgl) + "</div>" +
-      '<p class="fakta__k">' + esc(f.kalimat) + "</p>" +
-      '<p class="fakta__n">' + esc(String(it.note || "").replace(/\*\*/g, "")) + "</p>" +
-      '<div class="fakta__m">' + esc(it.label) + (it.abbr ? " · " + esc(it.abbr) : "") + " · Sumber: Booklet Indikator Strategis BPS Kabupaten Kutai Kartanegara</div>" +
+      '<div class="kicker" style="color:var(--oranye-teks)">Angka hari ini · ' + esc(tgl) +
+        (JADWAL && JADWAL.akhirPekan ? '<span class="fakta__pekan">Angka berikutnya terbit Senin</span>' : "") + "</div>" +
+      '<p class="fakta__k">' + esc(f.k) + "</p>" +
+      (catatan ? '<p class="fakta__n">' + esc(catatan) + "</p>" : "") +
+      '<div class="fakta__m">' + (it ? esc(it.label) + (it.abbr ? " · " + esc(it.abbr) : "") + " · " : "") + esc(f.s || "") + "</div>" +
       '<div class="fakta__aksi">' +
-        '<a class="utama" href="' + T.indikator + anchor + '">Lihat grafiknya</a>' +
-        '<a href="' + T.katalog + "glosarium.html#" + esc(f.glos) + '">Apa artinya?</a>' +
-        '<a href="https://wa.me/?text=' + encodeURIComponent(f.kalimat + "\n— PINTAR Kukar, BPS Kabupaten Kutai Kartanegara\n" + location.origin + T.indikator + anchor) + '" target="_blank" rel="noopener">Kirim ke WhatsApp</a>' +
-        (window.KARTU ? '<button type="button" id="faktaKartu">Unduh kartu gambar</button>' : "") +
+        (f.a || []).map(function (a) { return "<a" + (a.u ? ' class="utama"' : "") + ' href="' + esc(a.h) + '">' + esc(a.t) + "</a>"; }).join("") +
+        '<a href="https://wa.me/?text=' + encodeURIComponent(f.k + "\n— PINTAR Kukar, BPS Kabupaten Kutai Kartanegara\n" + tautanPenuh) + '" target="_blank" rel="noopener">Kirim ke WhatsApp</a>' +
+        (it && window.KARTU ? '<button type="button" id="faktaKartu">Unduh kartu gambar</button>' : "") +
         (FAKTA.length > 1 ? '<button type="button" class="lain" id="faktaLain" title="Angka lain">Angka lain ↻</button>' : "") +
       "</div>";
     var bk = document.getElementById("faktaKartu");
     if (bk) bk.onclick = function () {
       bk.disabled = true; bk.textContent = "Menyiapkan…";
       window.KARTU.bagikan({ label: it.label, value: it.value, dec: it.dec, unit: it.unit, abbr: it.abbr, note: String(it.note || "").replace(/\*\*/g, ""), accent: it.accent, tag: it.tag,
-        seri: seriFakta(IND, it.id), kalimat: f.kalimat, tautanPenuh: location.origin + T.indikator + anchor })
+        seri: seriFakta(IND || {}, it.id), kalimat: f.k, tautanPenuh: tautanPenuh })
         .then(function (r) { bk.textContent = r === "diunduh" ? "Kartu diunduh ✓" : r === "dibagikan" ? "Dibagikan ✓" : "Unduh kartu gambar"; })
         .catch(function () { bk.textContent = "Gagal membuat kartu"; })
         .then(function () { bk.disabled = false; setTimeout(function () { bk.textContent = "Unduh kartu gambar"; }, 2500); });
     };
     var bl = document.getElementById("faktaLain");
-    if (bl) bl.onclick = function () { faktaIdx = (faktaIdx + 1) % FAKTA.length; gambarFakta(); };
+    if (bl) bl.onclick = function () { faktaIdx = faktaIdx + 1; gambarFakta(); };
   }
   siapInd.then(function () {
-    FAKTA = IND ? faktaDari(IND) : [];
-    var awalTahun = new Date(new Date().getFullYear(), 0, 0), hari = Math.floor((Date.now() - awalTahun) / 864e5);
-    faktaIdx = FAKTA.length ? (hari + new Date().getFullYear()) % FAKTA.length : 0;
+    var FH = window.FAKTA_HARIAN;
+    FAKTA = FH ? FH.bangun({ T: T, KATALOG: KAT, KONFIG: K, GLOSARIUM: window.GLOSARIUM, DESCAN: window.DESCAN, IND: IND }) : [];
+    JADWAL = FH ? FH.jadwal() : null;
+    faktaIdx = JADWAL ? JADWAL.idx : 0;
     gambarFakta();
   });
 

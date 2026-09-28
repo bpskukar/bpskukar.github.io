@@ -10,10 +10,10 @@
    • Supabase / Web API: tidak pernah disimpan (data langsung, ada sesi).
    Nomor VERSI diubah tiap terbit agar salinan lama dibersihkan.
    ========================================================================== */
-var VERSI = "pintar-2026-09-11a";
+var VERSI = "pintar-2026-09-28a";
 var LURING = "/luring.html";
 var AWAL = [
-  "/", "/index.html", LURING, "/manifest.webmanifest", "/assets/pintar.js",
+  "/", "/index.html", LURING, "/manifest.webmanifest", "/assets/pintar.js", "/assets/fakta.js",
   "/assets/ikon/ikon-192.png", "/assets/ikon/ikon-512.png",
   "/indikator-strategis-bpskukar/", "/indikator-strategis-bpskukar/index.html",
   "/indikator-strategis-bpskukar/assets/app.js", "/indikator-strategis-bpskukar/assets/data.js",
